@@ -1,0 +1,23 @@
+(assign list (array "item1" "item2" "item3"))
+(assign print-list (func
+(assign i 0)
+(while (< i (len list)) (exec (func
+(assign item (index list i))
+(assign i (+ i 1))
+(println (concat (to-str i) "\s" item)))))))
+(assign continue true)
+(while continue (exec (func
+(exec print-list)
+(println "-\sadd\sitem")
+(println "-\sremove\sitem")
+(println "-\sexit")
+(assign option (prompt ":\s"))
+(if (= option "add\sitem") (exec (func
+(assign to-append (prompt "item\sto\sadd:\s"))
+(append list to-append))))
+(if (= option "remove\sitem") (exec (func
+(assign to-remove (prompt "item\sindex\sto\sremove:\s"))
+(assign to-remove (- (to-num to-remove) 1))
+(delete list to-remove))))
+(if (= option "exit")
+(assign continue false)))))
